@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PLBRA — Join the Local Business Partnership</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0B2A4A;
+    --navy-deep: #071E36;
+    --soft-white: #EAF1FA;
+    --civic-red: #E23B33;
+    --warm-yellow: #F2B64A;
+    --orange: #F39A3D;
+    --sky-blue: #5A8FD8;
+    --green: #10b981;
+    --page-bg: #F3F6FB;
+    --card-bg: #ffffff;
+    --border: #D7E0EC;
+    --body-text: #1F2A37;
+    --muted: #4b5563;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--page-bg);
+    color: var(--body-text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===================== HERO ===================== */
+  .hero {
+    background: var(--navy);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?w=1200&q=80');
+    background-size: cover;
+    background-position: center 40%;
+    opacity: 0.2;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(11,42,74,0.85) 0%, rgba(11,42,74,0.95) 100%);
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    padding: 56px 20px 48px;
+  }
+  .hero::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 80px; height: 3px;
+    background: var(--warm-yellow); border-radius: 2px; z-index: 1;
+  }
+  .eyebrow {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.65em; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2.5px;
+    color: var(--warm-yellow);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2em; font-weight: 700;
+    color: var(--soft-white); line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    color: #c5cdd8; font-size: 0.92em; line-height: 1.6;
+    max-width: 440px; margin: 0 auto;
+  }
+  .author-line {
+    margin-top: 24px;
+    display: inline-flex; align-items: center; gap: 10px;
+    background: rgba(255,255,255,0.08);
+    padding: 8px 16px; border-radius: 8px;
+    backdrop-filter: blur(4px);
+  }
+  .avatar {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: var(--sky-blue);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.7em; color: #fff;
+  }
+  .author-info .name { font-size: 0.82em; color: var(--soft-white); font-weight: 600; }
+  .author-info .role { font-size: 0.72em; color: #9ca3af; }
+
+  /* Loom video embed — full bleed */
+  .hero-video {
+    min-height: auto;
+    padding: 0;
+    display: block;
+  }
+  .hero-video .hero-bg,
+  .hero-video .hero-overlay { display: none; }
+  .hero-video .hero-content {
+    padding: 0;
+    width: 100%;
+  }
+  .hero-video .eyebrow {
+    background: var(--navy);
+    padding: 14px 16px 10px;
+    margin: 0;
+  }
+  .loom-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 */
+    background: #000;
+  }
+  .loom-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+  }
+  .hero-video .author-line {
+    background: var(--navy);
+    margin: 0;
+    padding: 12px 16px 14px;
+    border-radius: 0;
+    justify-content: center;
+    backdrop-filter: none;
+  }
+  .hero-video::after { display: none; }
+
+  /* ===================== SECTION PATTERNS ===================== */
+  .section {
+    max-width: 800px; margin: 0 auto; padding: 28px 16px;
+  }
+  .section-narrow {
+    max-width: 640px; margin: 0 auto; padding: 28px 16px;
+  }
+  .divider {
+    background: var(--navy); padding: 24px 20px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .divider .div-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center; opacity: 0.08;
+  }
+  .divider .div-content { position: relative; z-index: 1; }
+  .divider .label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.65em; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2.5px;
+    color: var(--warm-yellow); margin-bottom: 4px;
+  }
+  .divider h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.5em; font-weight: 700; color: var(--soft-white);
+  }
+  .divider p {
+    color: #9ca3af; font-size: 0.82em;
+    max-width: 400px; margin: 4px auto 0;
+  }
+
+  /* ===================== THE QUESTION ===================== */
+  .question-section {
+    text-align: center;
+    padding: 48px 20px;
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .question-section .the-question {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.6em; font-weight: 700;
+    color: var(--navy); line-height: 1.3;
+    max-width: 520px; margin: 0 auto;
+  }
+  .question-section .the-question span {
+    color: var(--warm-yellow);
+  }
+  .question-section .question-context {
+    font-size: 0.88em; color: var(--muted);
+    max-width: 480px; margin: 16px auto 0;
+    line-height: 1.65;
+  }
+
+  /* ===================== 3 PILLARS ===================== */
+  .pillars {
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .pillar {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .pillar-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 1.2em;
+  }
+  .pillar-icon.money { background: rgba(16,185,129,0.1); }
+  .pillar-icon.fix { background: rgba(90,143,216,0.12); }
+  .pillar-icon.power { background: rgba(242,182,74,0.12); }
+  .pillar h3 {
+    font-size: 0.92em; font-weight: 700; color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .pillar p { font-size: 0.82em; color: var(--muted); line-height: 1.5; }
+
+  /* ===================== STATS ===================== */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .stat-number {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.2em; font-weight: 700;
+    color: var(--navy); line-height: 1;
+  }
+  .stat-number.red { color: var(--civic-red); }
+  .stat-label {
+    font-size: 0.72em; color: var(--muted);
+    margin-top: 4px; line-height: 1.4;
+  }
+
+  /* ===================== PROBLEM STATEMENT ===================== */
+  .problem-statement {
+    background: var(--navy-deep);
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .problem-statement p {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.3em; font-weight: 700;
+    color: var(--soft-white);
+    max-width: 560px; margin: 0 auto;
+    line-height: 1.4;
+  }
+  .problem-statement .underline-accent {
+    border-bottom: 3px solid var(--warm-yellow);
+    padding-bottom: 2px;
+  }
+
+  /* ===================== IDEA ===================== */
+  .idea-section {
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--card-bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .idea-section h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.4em; font-weight: 700;
+    color: var(--navy); max-width: 480px;
+    margin: 0 auto; line-height: 1.3;
+  }
+  .idea-section p {
+    font-size: 0.88em; color: var(--muted);
+    max-width: 500px; margin: 14px auto 0; line-height: 1.65;
+  }
+
+  /* ===================== STEPS ===================== */
+  .steps { display: flex; flex-direction: column; gap: 12px; }
+  .step {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 10px; padding: 20px;
+    display: flex; align-items: flex-start; gap: 14px;
+  }
+  .step-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-icon svg { width: 22px; height: 22px; }
+  .step-icon.blue { background: rgba(90,143,216,0.12); }
+  .step-icon.yellow { background: rgba(242,182,74,0.12); }
+  .step-icon.green { background: rgba(16,185,129,0.1); }
+  .step h3 { font-size: 0.92em; font-weight: 700; color: var(--navy); margin-bottom: 2px; }
+  .step p { font-size: 0.82em; color: var(--muted); line-height: 1.5; }
+
+  /* ===================== PREVIEW CARDS ===================== */
+  .previews { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .preview-card {
+    text-decoration: none; color: inherit;
+    border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--border); background: var(--card-bg);
+    display: flex; flex-direction: column;
+    transition: border-color 0.15s ease;
+  }
+  .preview-card:hover { border-color: var(--sky-blue); }
+  .preview-card:active { transform: scale(0.99); }
+  .pc-screenshot {
+    width: 100%; height: 220px; overflow: hidden;
+    position: relative; background: #f1f3f5;
+  }
+  .pc-screenshot img {
+    width: 100%; height: 100%; object-fit: cover;
+    object-position: top center; display: block;
+  }
+  .pc-screenshot .pc-badge {
+    position: absolute; top: 10px; right: 10px;
+    background: #FF6600; color: #fff;
+    padding: 4px 10px; border-radius: 4px;
+    font-size: 0.65em; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.3px;
+  }
+  .pc-bottom {
+    padding: 14px 16px;
+    display: flex; align-items: center;
+    justify-content: space-between; gap: 10px;
+  }
+  .pc-bottom .pc-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em; font-weight: 700; color: var(--navy);
+  }
+  .pc-bottom .pc-type { font-size: 0.72em; color: var(--muted); margin-top: 1px; }
+  .pc-bottom .pc-arrow {
+    font-size: 0.82em; font-weight: 600; color: var(--sky-blue);
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* ===================== TIMELINE ===================== */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 6px; top: 6px; bottom: 6px;
+    width: 2px; background: var(--border);
+  }
+  .tl-item {
+    position: relative; padding: 8px 0;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .tl-dot {
+    width: 12px; height: 12px; border-radius: 50%;
+    position: absolute; left: -28px; top: 12px;
+    border: 2px solid var(--card-bg); z-index: 1;
+  }
+  .tl-item.done .tl-dot { background: var(--green); }
+  .tl-item.now .tl-dot { background: var(--warm-yellow); box-shadow: 0 0 0 4px rgba(242,182,74,0.2); }
+  .tl-item.next .tl-dot { background: #d1d5db; }
+  .tl-content { flex: 1; }
+  .tl-title { font-size: 0.88em; font-weight: 700; color: var(--body-text); }
+  .tl-desc { font-size: 0.75em; color: var(--muted); }
+  .tl-tag {
+    font-size: 0.6em; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.8px;
+    padding: 2px 8px; border-radius: 3px;
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .tl-tag.done { background: rgba(16,185,129,0.1); color: #059669; }
+  .tl-tag.now { background: rgba(242,182,74,0.12); color: #b45309; }
+  .tl-tag.next { background: rgba(0,0,0,0.04); color: #9ca3af; }
+
+  /* ===================== VISION ===================== */
+  .vision-levels {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .vision-level {
+    padding: 20px;
+    border-left: 3px solid transparent;
+    position: relative;
+  }
+  .vision-level:nth-child(1) { border-left-color: var(--green); background: rgba(16,185,129,0.04); }
+  .vision-level:nth-child(2) { border-left-color: var(--sky-blue); background: rgba(90,143,216,0.04); }
+  .vision-level:nth-child(3) { border-left-color: var(--warm-yellow); background: rgba(242,182,74,0.06); }
+  .vision-level .vl-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.6em; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--muted); margin-bottom: 4px;
+  }
+  .vision-level h3 {
+    font-size: 0.95em; font-weight: 700; color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .vision-level p { font-size: 0.82em; color: var(--muted); line-height: 1.5; }
+
+  /* ===================== PERSONAL ===================== */
+  .personal-section {
+    background: var(--card-bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 36px 20px;
+    text-align: center;
+  }
+  .personal-section h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2em; font-weight: 700;
+    color: var(--navy); margin-bottom: 14px;
+  }
+  .personal-section p {
+    font-size: 0.88em; color: var(--muted);
+    max-width: 540px; margin: 0 auto; line-height: 1.7;
+  }
+
+  /* ===================== VOLUNTEER ROLES ===================== */
+  .roles-grid {
+    display: grid; grid-template-columns: 1fr; gap: 12px;
+  }
+  .role-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .role-header {
+    display: flex; align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+  }
+  .role-card h3 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em; font-weight: 700; color: var(--navy);
+  }
+  .role-time {
+    font-size: 0.68em; font-weight: 600;
+    color: var(--sky-blue);
+    background: rgba(90,143,216,0.08);
+    padding: 3px 8px; border-radius: 4px;
+    white-space: nowrap;
+  }
+  .role-card p {
+    font-size: 0.82em; color: var(--muted); line-height: 1.5;
+  }
+
+  /* ===================== WHAT YOU GET ===================== */
+  .perks-list {
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .perk-item {
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .perk-check {
+    width: 24px; height: 24px; border-radius: 50%;
+    background: rgba(242,182,74,0.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 2px;
+    color: var(--warm-yellow); font-size: 0.75em; font-weight: 700;
+  }
+  .perk-item h4 {
+    font-size: 0.88em; font-weight: 700; color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .perk-item p { font-size: 0.8em; color: var(--muted); line-height: 1.5; }
+
+  /* ===================== FORM ===================== */
+  .form-wrap {
+    max-width: 540px; margin: 0 auto; padding: 28px 16px;
+  }
+  .form-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px 20px;
+  }
+  .form-card label.field-label {
+    display: block; font-size: 0.8em; font-weight: 700;
+    color: var(--body-text); margin-bottom: 5px;
+  }
+  .form-card input[type="text"],
+  .form-card input[type="email"] {
+    width: 100%; padding: 12px 14px;
+    border: 1px solid var(--border); border-radius: 8px;
+    font-family: 'Inter', sans-serif; font-size: 16px;
+    color: var(--body-text); background: var(--page-bg);
+    outline: none; margin-bottom: 14px;
+    -webkit-appearance: none;
+  }
+  .form-card input:focus { border-color: var(--sky-blue); }
+
+  .help-label {
+    font-size: 0.8em; font-weight: 700;
+    color: var(--body-text); margin-bottom: 8px; display: block;
+  }
+  .help-opt {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px; background: var(--page-bg);
+    border: 1px solid var(--border); border-radius: 8px;
+    margin-bottom: 8px; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .help-opt:active { background: #edf0f5; }
+  .help-opt input { display: none; }
+  .help-box {
+    width: 22px; height: 22px;
+    border: 2px solid var(--border); border-radius: 5px;
+    flex-shrink: 0; position: relative;
+    transition: all 0.12s ease;
+  }
+  .help-opt input:checked + .help-box {
+    background: var(--sky-blue); border-color: var(--sky-blue);
+  }
+  .help-opt input:checked + .help-box::after {
+    content: '\2713'; position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: #fff; font-size: 0.72em; font-weight: 700;
+  }
+  .help-opt .help-txt {
+    font-size: 0.85em; color: var(--body-text); font-weight: 500;
+  }
+  .help-opt .help-sub {
+    font-size: 0.72em; color: var(--muted); font-weight: 400;
+  }
+
+  .commit-wrap {
+    margin-top: 18px; padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+  .commit-opt {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 14px;
+    background: rgba(242,182,74,0.06);
+    border: 1px solid rgba(242,182,74,0.2);
+    border-radius: 8px; cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .commit-opt input { display: none; }
+  .commit-box {
+    width: 22px; height: 22px;
+    border: 2px solid var(--warm-yellow);
+    border-radius: 5px; flex-shrink: 0; margin-top: 1px;
+    position: relative; transition: all 0.12s ease;
+  }
+  .commit-opt input:checked + .commit-box { background: var(--warm-yellow); }
+  .commit-opt input:checked + .commit-box::after {
+    content: '\2713'; position: absolute;
+    top: 50%; left: 50%; transform: translate(-50%, -50%);
+    color: var(--navy); font-size: 0.72em; font-weight: 800;
+  }
+  .commit-opt .commit-txt {
+    font-size: 0.82em; color: var(--body-text); line-height: 1.5;
+  }
+
+  .submit-btn {
+    display: block; width: 100%; margin-top: 20px;
+    padding: 14px; background: var(--sky-blue); color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 1em; font-weight: 700;
+    border: none; border-radius: 8px; cursor: pointer;
+    -webkit-appearance: none; transition: opacity 0.12s ease;
+  }
+  .submit-btn:hover { opacity: 0.9; }
+  .submit-btn:active { opacity: 0.85; }
+  .form-note {
+    text-align: center; font-size: 0.72em;
+    color: var(--muted); margin-top: 12px;
+  }
+
+  /* ===================== FOOTER ===================== */
+  .footer {
+    background: var(--navy);
+    padding: 28px 20px; text-align: center;
+    margin-top: 20px;
+  }
+  .footer .f-tagline {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1em; font-weight: 700;
+    color: var(--warm-yellow);
+    margin-bottom: 8px;
+  }
+  .footer .f-main { color: var(--soft-white); font-size: 0.82em; font-weight: 600; }
+  .footer .f-sub { color: #6b7280; font-size: 0.75em; margin-top: 4px; }
+  .footer .f-sub strong { color: #9ca3af; }
+
+  /* ===================== DESKTOP ===================== */
+  @media (min-width: 640px) {
+    .hero { min-height: 480px; }
+    .hero-content { padding: 72px 24px 56px; }
+    .hero h1 { font-size: 2.8em; }
+    .question-section .the-question { font-size: 2em; }
+    .section { padding: 36px 24px; }
+    .section-narrow { padding: 36px 24px; }
+    .divider { padding: 32px 24px; }
+    .divider h2 { font-size: 1.7em; }
+
+    .pillars { flex-direction: row; gap: 14px; }
+    .pillar { flex-direction: column; align-items: center; text-align: center; flex: 1; }
+
+    .stats-grid { grid-template-columns: repeat(4, 1fr); }
+
+    .steps { flex-direction: row; gap: 14px; }
+    .step { flex-direction: column; align-items: center; text-align: center; flex: 1; }
+
+    .previews { grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .pc-screenshot { height: 260px; }
+
+    .roles-grid { grid-template-columns: 1fr 1fr; }
+
+    .form-wrap { padding: 36px 24px; }
+    .form-card { padding: 32px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-row .field { margin-bottom: 0; }
+
+    .problem-statement p { font-size: 1.5em; }
+    .idea-section h2 { font-size: 1.6em; }
+    .personal-section h2 { font-size: 1.4em; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== HERO WITH VIDEO ==================== -->
+<div class="hero hero-video">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="eyebrow">Park La Brea Residents Association</div>
+    <div class="loom-wrap">
+      <iframe
+        src="https://www.loom.com/embed/d5b9adf97ce246be9aade098e3e2fef3?autoplay=1&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+        frameborder="0"
+        webkitallowfullscreen mozallowfullscreen allowfullscreen
+        allow="autoplay"
+      ></iframe>
+    </div>
+    <div class="author-line">
+      <div class="avatar">JJ</div>
+      <div class="author-info">
+        <div class="name">Jordan Jones</div>
+        <div class="role">Board Member, PLBRA</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== THE QUESTION ==================== -->
+<div class="question-section">
+  <p class="the-question"><span>"</span>What do I actually get for my $20?<span>"</span></p>
+  <p class="question-context">I'm on the board. And honestly? I couldn't answer this clearly. If I can't explain it, how is someone who's never been to a meeting supposed to understand it?</p>
+</div>
+
+<!-- ==================== WHAT PLBRA DOES ==================== -->
+<div class="divider">
+  <div class="div-content">
+    <div class="label">The Reality</div>
+    <h2>What PLBRA Actually Does</h2>
+    <p>The work is real. The communication is broken.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-icon money">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+      </div>
+      <div>
+        <h3>Money Back in Your Pocket</h3>
+        <p>Utility overcharge refunds — real dollars returned to residents</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon fix">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5A8FD8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+      </div>
+      <div>
+        <h3>Problems Solved When Management Won't</h3>
+        <p>~500 maintenance issues handled per year — mold, delays, being ignored</p>
+      </div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon power">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2B64A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      </div>
+      <div>
+        <h3>Political Power for 4,200 Apartments</h3>
+        <p>City council, supervisors, and assemblymembers brought to the table</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== THE DATA ==================== -->
+<div class="divider">
+  <div class="div-content">
+    <div class="label">The Numbers</div>
+    <h2>What I Found When I Looked</h2>
+  </div>
+</div>
+
+<div class="section">
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">82</div>
+      <div class="stat-label">dues-paying members<br>out of 4,200 apartments</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number red">61%</div>
+      <div class="stat-label">of members<br>don't renew</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number red">95%</div>
+      <div class="stat-label">of website visitors<br>never see Join page</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">0</div>
+      <div class="stat-label">onboarding process<br>for new members</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== THE PROBLEM ==================== -->
+<div class="problem-statement">
+  <p>Nobody knows what PLBRA does, why they should join, or <span class="underline-accent">what happens after they do.</span></p>
+</div>
+
+<!-- ==================== THE IDEA ==================== -->
+<div class="idea-section">
+  <h2>What if your $20 membership actually saved you money every week?</h2>
+  <p>Discounts, BOGOs, and free items at restaurants and businesses you already walk to — real deals from real neighbors, exclusively for PLBRA members.</p>
+</div>
+
+<!-- ==================== HOW IT WORKS ==================== -->
+<div class="divider">
+  <div class="div-content">
+    <div class="label">The Concept</div>
+    <h2>How the Partnership Works</h2>
+  </div>
+</div>
+
+<div class="section">
+  <div class="steps">
+    <div class="step">
+      <div class="step-icon blue">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#5A8FD8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <polyline points="22,6 12,13 2,6"></polyline>
+        </svg>
+      </div>
+      <div>
+        <h3>We Reach Out</h3>
+        <p>Professional email pitch to local businesses with a preview of how they'd be featured</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-icon yellow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#F2B64A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 11 12 14 22 4"></polyline>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+        </svg>
+      </div>
+      <div>
+        <h3>They Pick a Perk</h3>
+        <p>The business chooses what deal to offer — no cost, no contracts, totally their call</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-icon green">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+      </div>
+      <div>
+        <h3>Members Get Deals</h3>
+        <p>Exclusive discounts at businesses within walking distance of Park La Brea</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PROOF ==================== -->
+<div class="divider">
+  <div class="div-content">
+    <div class="label">What I Built</div>
+    <h2>This Isn't a Proposal. It's Running.</h2>
+    <p>43 businesses contacted. 12 industry templates. 20 response playbooks.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="previews">
+    <a href="https://link.techjoint.us/l/AVZWcYounf" target="_blank" class="preview-card">
+      <div class="pc-screenshot">
+        <img src="dinos.png" alt="Dino's Famous Chicken spotlight page">
+        <div class="pc-badge">PLBRA Exclusive</div>
+      </div>
+      <div class="pc-bottom">
+        <div>
+          <div class="pc-name">Dino's Famous Chicken</div>
+          <div class="pc-type">Charbroiled Chicken &middot; Pico-Union</div>
+        </div>
+        <div class="pc-arrow">View Page &rarr;</div>
+      </div>
+    </a>
+
+    <a href="https://link.techjoint.us/l/aT0DFaJF6t" target="_blank" class="preview-card">
+      <div class="pc-screenshot">
+        <img src="republique.png" alt="R&eacute;publique spotlight page">
+        <div class="pc-badge">PLBRA Exclusive</div>
+      </div>
+      <div class="pc-bottom">
+        <div>
+          <div class="pc-name">R&eacute;publique</div>
+          <div class="pc-type">French Bakery &middot; La Brea Ave</div>
+        </div>
+        <div class="pc-arrow">View Page &rarr;</div>
+      </div>
+    </a>
+
+    <a href="https://link.techjoint.us/l/Ep556XvCW1" target="_blank" class="preview-card">
+      <div class="pc-screenshot">
+        <img src="marvelous.png" alt="Marvelous Creations spotlight page">
+        <div class="pc-badge">PLBRA Exclusive</div>
+      </div>
+      <div class="pc-bottom">
+        <div>
+          <div class="pc-name">Marvelous Creations</div>
+          <div class="pc-type">Charcuterie &middot; Grazing Tables</div>
+        </div>
+        <div class="pc-arrow">View Page &rarr;</div>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- ==================== WHERE WE ARE ==================== -->
+<div class="divider">
+  <div class="div-content">
+    <div class="label">Progress</div>
+    <h2>Where We Are</h2>
+  </div>
+</div>
+
+<div class="section">
+  <div class="timeline">
+    <div class="tl-item done">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-title">Gathered 43 local business contacts</div>
+      </div>
+      <div class="tl-tag done">Done</div>
+    </div>
+    <div class="tl-item done">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-title">Built 3-email outreach campaign</div>
+      </div>
+      <div class="tl-tag done">Done</div>
+    </div>
+    <div class="tl-item done">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-title">Created spotlight pages for every business</div>
+      </div>
+      <div class="tl-tag done">Done</div>
+    </div>
+    <div class="tl-item done">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-title">Launched first wave — 37 restaurants</div>
+      </div>
+      <div class="tl-tag done">Done</div>
+    </div>
+    <div class="tl-item now">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-title">Follow-up calls to close partnerships</div>
+        <div class="tl-desc">This is where you come in</div>
+      </div>
+      <div class="tl-tag now">Now</div>
+    </div>
+    <div class="tl-item next">
+      <div class="tl-dot"></div>
+      <div class="tl-content">
+        <div class="tl-title">Promote deals to all PLBRA members</div>
+      </div>
+      <div class="tl-tag next">Next</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== THE VISION ==================== -->
+<div class="divider">
+  <div class="div-content">
+    <div class="label">The Bigger Picture</div>
+    <h2>This Is Bigger Than Discounts</h2>
+  </div>
+</div>
+
+<div class="section-narrow">
+  <div class="vision-levels">
+    <div class="vision-level">
+      <div class="vl-label">Level 1</div>
+      <h3>Members Get Real Value</h3>
+      <p>40+ local business deals. Your $20 pays for itself in the first week. Membership finally means something you use.</p>
+    </div>
+    <div class="vision-level">
+      <div class="vl-label">Level 2</div>
+      <h3>Membership Grows</h3>
+      <p>When people see real perks, they join. When they join, they renew. We go from 82 to 200, then 500.</p>
+    </div>
+    <div class="vision-level">
+      <div class="vl-label">Level 3</div>
+      <h3>The Community Gets Power</h3>
+      <p>500 members means 500 people who show up, who vote, who the city listens to. That's how rent stays fair and management stops ignoring us.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== WHY I'M DOING THIS ==================== -->
+<div class="personal-section">
+  <h2>Why I'm Doing This</h2>
+  <p>I moved to Park La Brea and found a group that's been fighting for residents since 1943. But it's shrinking — not because the work isn't good, but because nobody can see it. I have the skills to fix that. I built the tools. I built the system. But a system only works if people run it. I'm not asking for donations or dues. I'm asking for your time — a few hours a month — to help build something that makes this place better for everyone who lives here.</p>
+</div>
+
+<!-- ==================== HOW YOU CAN HELP ==================== -->
+<div class="divider">
+  <div class="div-content">
+    <div class="label">Get Involved</div>
+    <h2>Here's Exactly How You Can Help</h2>
+  </div>
+</div>
+
+<div class="section">
+  <div class="roles-grid">
+    <div class="role-card">
+      <div class="role-header">
+        <h3>The Caller</h3>
+        <span class="role-time">2-3 hrs/week</span>
+      </div>
+      <p>Follow up with businesses by phone. We give you the script, the list, and the talking points. You make the call.</p>
+    </div>
+    <div class="role-card">
+      <div class="role-header">
+        <h3>The Connector</h3>
+        <span class="role-time">1-2 hrs/week</span>
+      </div>
+      <p>Know a business owner? Walk in, introduce the program, hand them the info. You're the face.</p>
+    </div>
+    <div class="role-card">
+      <div class="role-header">
+        <h3>The Organizer</h3>
+        <span class="role-time">1-2 hrs/week</span>
+      </div>
+      <p>Help track responses, update the spreadsheet, keep the pipeline moving. Detail-oriented work.</p>
+    </div>
+    <div class="role-card">
+      <div class="role-header">
+        <h3>The Ambassador</h3>
+        <span class="role-time">Anytime</span>
+      </div>
+      <p>Spread the word to other residents. Share the link. Talk about it at meetings. Get people excited.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== WHAT YOU GET ==================== -->
+<div class="divider">
+  <div class="div-content">
+    <div class="label">What's In It For You</div>
+    <h2>Honestly</h2>
+  </div>
+</div>
+
+<div class="section-narrow">
+  <div class="perks-list">
+    <div class="perk-item">
+      <div class="perk-check">&#10003;</div>
+      <div>
+        <h4>You own what you build</h4>
+        <p>The partnerships you close are yours. Your name goes on them. When that restaurant goes live on the site, you made that happen.</p>
+      </div>
+    </div>
+    <div class="perk-item">
+      <div class="perk-check">&#10003;</div>
+      <div>
+        <h4>You see the impact immediately</h4>
+        <p>This isn't a committee that meets for six months. Businesses respond in days. You'll close your first partnership within your first two weeks.</p>
+      </div>
+    </div>
+    <div class="perk-item">
+      <div class="perk-check">&#10003;</div>
+      <div>
+        <h4>You're building something that lasts</h4>
+        <p>Every partnership you add makes PLBRA stronger — more members, more leverage, more power to actually change things at Park La Brea.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SIGN UP FORM ==================== -->
+<div class="divider">
+  <div class="div-content">
+    <div class="label">Ready?</div>
+    <h2>Join the Team</h2>
+  </div>
+</div>
+
+<div class="form-wrap">
+  <div class="form-card">
+    <form onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="field">
+          <label class="field-label" for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label class="field-label" for="email">Email</label>
+          <input type="email" id="email" placeholder="you@email.com" required>
+        </div>
+      </div>
+
+      <span class="help-label">Pick your role:</span>
+
+      <label class="help-opt">
+        <input type="checkbox" name="role" value="caller">
+        <span class="help-box"></span>
+        <div>
+          <span class="help-txt">The Caller</span><br>
+          <span class="help-sub">Follow up with businesses by phone</span>
+        </div>
+      </label>
+
+      <label class="help-opt">
+        <input type="checkbox" name="role" value="connector">
+        <span class="help-box"></span>
+        <div>
+          <span class="help-txt">The Connector</span><br>
+          <span class="help-sub">Visit businesses in person, make introductions</span>
+        </div>
+      </label>
+
+      <label class="help-opt">
+        <input type="checkbox" name="role" value="organizer">
+        <span class="help-box"></span>
+        <div>
+          <span class="help-txt">The Organizer</span><br>
+          <span class="help-sub">Track responses, keep the pipeline moving</span>
+        </div>
+      </label>
+
+      <label class="help-opt">
+        <input type="checkbox" name="role" value="ambassador">
+        <span class="help-box"></span>
+        <div>
+          <span class="help-txt">The Ambassador</span><br>
+          <span class="help-sub">Spread the word to other residents</span>
+        </div>
+      </label>
+
+      <div class="commit-wrap">
+        <label class="commit-opt">
+          <input type="checkbox" required>
+          <span class="commit-box"></span>
+          <span class="commit-txt">I'm here to contribute and help build something real — not just observe. I can commit a few hours a month.</span>
+        </label>
+      </div>
+
+      <button type="submit" class="submit-btn">Count Me In</button>
+      <p class="form-note">Jordan will personally reach out within 48 hours with your first assignment.</p>
+    </form>
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer">
+  <p class="f-tagline">Built by residents. For residents.</p>
+  <p class="f-main">Jordan Jones &middot; PLBRA Board Member</p>
+  <p class="f-sub">Questions? <strong>partnerships@plbra.org</strong></p>
+</div>
+
+<!-- ==================== ANIMATIONS ==================== -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+function handleSubmit(e) {
+  e.preventDefault();
+  var btn = e.target.querySelector('.submit-btn');
+  btn.textContent = "You're In — I'll Be in Touch Soon.";
+  btn.style.background = '#10b981';
+  btn.disabled = true;
+}
+
+// Hero entrance
+var heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+heroTl
+  .from('.hero .eyebrow', { y: -20, opacity: 0, duration: 0.6 })
+  .from('.loom-wrap', { y: 30, opacity: 0, duration: 0.8 }, '-=0.3')
+  .from('.hero .author-line', { y: 15, opacity: 0, duration: 0.5 }, '-=0.3');
+
+// Question section
+gsap.from('.question-section .the-question', {
+  scrollTrigger: { trigger: '.question-section', start: 'top 80%', once: true },
+  scale: 0.9, opacity: 0, duration: 0.8, ease: 'power2.out'
+});
+gsap.from('.question-section .question-context', {
+  scrollTrigger: { trigger: '.question-section', start: 'top 75%', once: true },
+  y: 20, opacity: 0, duration: 0.6, delay: 0.3, ease: 'power2.out'
+});
+
+// Dividers
+gsap.utils.toArray('.divider').forEach(function(div) {
+  gsap.from(div, {
+    scrollTrigger: { trigger: div, start: 'top 90%', once: true },
+    opacity: 0, duration: 0.8, ease: 'power1.out'
+  });
+});
+
+// Pillars
+gsap.utils.toArray('.pillar').forEach(function(el, i) {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    y: 40, opacity: 0, duration: 0.7, delay: i * 0.12, ease: 'power2.out'
+  });
+});
+
+// Stats
+gsap.utils.toArray('.stat-card').forEach(function(el, i) {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    y: 30, opacity: 0, duration: 0.6, delay: i * 0.1, ease: 'power2.out'
+  });
+});
+
+// Problem statement
+gsap.from('.problem-statement p', {
+  scrollTrigger: { trigger: '.problem-statement', start: 'top 80%', once: true },
+  y: 20, opacity: 0, duration: 0.8, ease: 'power2.out'
+});
+
+// Idea section
+gsap.from('.idea-section h2', {
+  scrollTrigger: { trigger: '.idea-section', start: 'top 80%', once: true },
+  y: 20, opacity: 0, duration: 0.7, ease: 'power2.out'
+});
+gsap.from('.idea-section p', {
+  scrollTrigger: { trigger: '.idea-section', start: 'top 75%', once: true },
+  y: 15, opacity: 0, duration: 0.6, delay: 0.2, ease: 'power2.out'
+});
+
+// Steps
+gsap.utils.toArray('.step').forEach(function(el, i) {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    y: 40, opacity: 0, duration: 0.7, delay: i * 0.12, ease: 'power2.out'
+  });
+});
+
+// Preview cards
+gsap.utils.toArray('.preview-card').forEach(function(card, i) {
+  gsap.from(card, {
+    scrollTrigger: { trigger: card, start: 'top 85%', once: true },
+    y: 50, opacity: 0, duration: 0.8, delay: i * 0.15, ease: 'power2.out'
+  });
+});
+
+// Timeline
+gsap.utils.toArray('.tl-item').forEach(function(item, i) {
+  gsap.from(item, {
+    scrollTrigger: { trigger: item, start: 'top 85%', once: true },
+    x: -30, opacity: 0, duration: 0.6, delay: i * 0.1, ease: 'power2.out'
+  });
+});
+
+// Vision levels
+gsap.utils.toArray('.vision-level').forEach(function(el, i) {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    x: -30, opacity: 0, duration: 0.7, delay: i * 0.15, ease: 'power2.out'
+  });
+});
+
+// Personal section
+gsap.from('.personal-section h2', {
+  scrollTrigger: { trigger: '.personal-section', start: 'top 80%', once: true },
+  y: 20, opacity: 0, duration: 0.6, ease: 'power2.out'
+});
+gsap.from('.personal-section p', {
+  scrollTrigger: { trigger: '.personal-section', start: 'top 75%', once: true },
+  y: 15, opacity: 0, duration: 0.7, delay: 0.2, ease: 'power2.out'
+});
+
+// Role cards
+gsap.utils.toArray('.role-card').forEach(function(el, i) {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    y: 40, opacity: 0, duration: 0.7, delay: i * 0.1, ease: 'power2.out'
+  });
+});
+
+// Perk items
+gsap.utils.toArray('.perk-item').forEach(function(el, i) {
+  gsap.from(el, {
+    scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    x: -20, opacity: 0, duration: 0.6, delay: i * 0.12, ease: 'power2.out'
+  });
+});
+
+// Form
+gsap.from('.form-card', {
+  scrollTrigger: { trigger: '.form-card', start: 'top 85%', once: true },
+  y: 30, opacity: 0, duration: 0.7, ease: 'power2.out'
+});
+
+gsap.utils.toArray('.help-opt').forEach(function(opt, i) {
+  gsap.from(opt, {
+    scrollTrigger: { trigger: opt, start: 'top 90%', once: true },
+    x: 20, opacity: 0, duration: 0.5, delay: i * 0.08, ease: 'power2.out'
+  });
+});
+
+gsap.from('.commit-wrap', {
+  scrollTrigger: { trigger: '.commit-wrap', start: 'top 90%', once: true },
+  y: 20, opacity: 0, duration: 0.6, ease: 'power2.out'
+});
+
+gsap.from('.submit-btn', {
+  scrollTrigger: { trigger: '.submit-btn', start: 'top 92%', once: true },
+  scale: 0.9, opacity: 0, duration: 0.5, ease: 'back.out(1.4)'
+});
+
+gsap.from('.footer', {
+  scrollTrigger: { trigger: '.footer', start: 'top 95%', once: true },
+  opacity: 0, duration: 1, ease: 'power1.out'
+});
+</script>
+
+</body>
+</html>
