@@ -275,7 +275,8 @@
     outline: none; margin-bottom: 12px;
     -webkit-appearance: none;
   }
-  .form-card input:focus { border-color: var(--sky-blue); }
+  .form-card input:focus,
+  .form-card textarea:focus { border-color: var(--sky-blue); }
 
   .role-picks { margin-bottom: 14px; }
   .role-picks .rp-label {
@@ -511,36 +512,47 @@
   <div class="form-card">
     <div class="form-title">I'm In. Count Me In.</div>
 
-    <form onsubmit="handleSubmit(event)">
-      <label class="fl" for="name">Name</label>
-      <input type="text" id="name" placeholder="Your name" required>
+    <form id="volunteerForm">
+      <label class="fl" for="volName">Name</label>
+      <input type="text" id="volName" placeholder="Your name" required>
 
-      <label class="fl" for="email">Email</label>
-      <input type="email" id="email" placeholder="you@email.com" required>
+      <label class="fl" for="volEmail">Email</label>
+      <input type="email" id="volEmail" placeholder="you@email.com" required>
+
+      <label class="fl" for="volPhone">Phone <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+      <input type="text" id="volPhone" placeholder="(555) 123-4567">
 
       <div class="role-picks">
-        <span class="rp-label">I can help with:</span>
+        <span class="rp-label">I'm interested in:</span>
         <label class="rp-opt">
-          <input type="checkbox" name="role" value="caller">
+          <input type="checkbox" name="interests" value="Vendor Outreach">
           <span class="rp-box"></span>
-          <span class="rp-txt">Making calls</span>
+          <span class="rp-txt">Vendor Outreach</span>
         </label>
         <label class="rp-opt">
-          <input type="checkbox" name="role" value="connector">
+          <input type="checkbox" name="interests" value="Graphic Design/Copywriting">
           <span class="rp-box"></span>
-          <span class="rp-txt">Visiting businesses in person</span>
+          <span class="rp-txt">Graphic Design / Copywriting</span>
         </label>
         <label class="rp-opt">
-          <input type="checkbox" name="role" value="organizer">
+          <input type="checkbox" name="interests" value="AI Tools/Tech">
           <span class="rp-box"></span>
-          <span class="rp-txt">Tracking &amp; coordination</span>
+          <span class="rp-txt">AI Tools / Tech</span>
         </label>
         <label class="rp-opt">
-          <input type="checkbox" name="role" value="ambassador">
+          <input type="checkbox" name="interests" value="General Coordination">
           <span class="rp-box"></span>
-          <span class="rp-txt">Spreading the word</span>
+          <span class="rp-txt">General Coordination</span>
+        </label>
+        <label class="rp-opt">
+          <input type="checkbox" name="interests" value="Other">
+          <span class="rp-box"></span>
+          <span class="rp-txt">Other</span>
         </label>
       </div>
+
+      <label class="fl" for="volMessage">Message <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+      <textarea id="volMessage" placeholder="Anything else you want to share..." rows="3" style="width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-family:'Inter',sans-serif;font-size:16px;color:var(--body-text);background:var(--page-bg);outline:none;margin-bottom:12px;resize:vertical;-webkit-appearance:none;"></textarea>
 
       <button type="submit" class="submit-btn">Count Me In</button>
       <p class="form-note">Jordan Jones will reach out within 48 hours with your first assignment.</p>
@@ -560,14 +572,39 @@
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
-function handleSubmit(e) {
+document.getElementById('volunteerForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  var btn = e.target.querySelector('.submit-btn');
-  btn.textContent = "You're In — I'll Be in Touch.";
-  btn.style.background = '#10b981';
-  btn.style.color = '#fff';
+  var form = e.target;
+  var btn = form.querySelector('button[type="submit"]');
+  btn.textContent = 'Sending...';
   btn.disabled = true;
-}
+
+  // Gather checked interests
+  var interests = Array.from(form.querySelectorAll('input[name="interests"]:checked'))
+    .map(function(cb) { return cb.value; }).join(', ');
+
+  var data = {
+    name: form.querySelector('#volName').value,
+    email: form.querySelector('#volEmail').value,
+    phone: form.querySelector('#volPhone').value || '',
+    interests: interests,
+    message: form.querySelector('#volMessage').value || ''
+  };
+
+  try {
+    await fetch('YOUR_GOOGLE_APPS_SCRIPT_URL_HERE', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    form.innerHTML = '<div style="text-align:center;padding:40px 20px;"><h3 style="color:#10b981;margin-bottom:8px;">Thanks for signing up!</h3><p style="color:var(--muted);font-size:0.9em;">We\'ll be in touch soon.</p></div>';
+  } catch(err) {
+    btn.textContent = 'Try Again';
+    btn.disabled = false;
+    alert('Something went wrong. Please email jordan@plbra.org directly.');
+  }
+});
 
 // Hook entrance
 gsap.from('.hook h1', { y: 30, opacity: 0, duration: 0.7, ease: 'power2.out' });
